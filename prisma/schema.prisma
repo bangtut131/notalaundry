@@ -1,0 +1,123 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String
+  role      Role     @default(KASIR)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  orders    Order[]
+}
+
+enum Role {
+  ADMIN
+  KASIR
+  KURIR
+}
+
+model Customer {
+  id        String   @id @default(cuid())
+  name      String
+  phone     String   @unique // The WhatsApp number
+  address   String?
+  point     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  orders    Order[]
+}
+
+model Service {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  price       Float
+  unit        UnitType @default(KG)
+  isExpress   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  orderItems OrderItem[]
+}
+
+enum UnitType {
+  KG
+  PCS
+  METER
+}
+
+model Order {
+  id            String      @id @default(cuid())
+  orderNumber   String      @unique // E.g., ORD-20260316-0001
+  customerId    String
+  customer      Customer    @relation(fields: [customerId], references: [id])
+  userId        String      // The user who created this order
+  user          User        @relation(fields: [userId], references: [id])
+  totalAmount   Float
+  discount      Float       @default(0)
+  finalAmount   Float
+  paymentStatus PaymentStatus @default(UNPAID)
+  status        OrderStatus @default(QUEUE)
+  notes         String?
+  
+  // Timestamps for tracking
+  createdAt     DateTime    @default(now()) // Tgl Terima
+  estimatedDate DateTime?   // Estimasi Selesai
+  completedDate DateTime?   // Tgl Selesai
+  pickedUpDate  DateTime?   // Tgl Diambil
+  updatedAt     DateTime    @updatedAt
+
+  items OrderItem[]
+}
+
+enum PaymentStatus {
+  UNPAID
+  PAID
+  PARTIAL
+}
+
+enum OrderStatus {
+  QUEUE         // Antrean
+  WASHING       // Proses Cuci
+  IRONING       // Proses Setrika
+  READY         // Selesai (Siap Diambil) -> Trigger auto billing
+  COMPLETED     // Sudah Diambil
+  CANCELLED
+}
+
+model OrderItem {
+  id        String   @id @default(cuid())
+  orderId   String
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  serviceId String
+  service   Service  @relation(fields: [serviceId], references: [id])
+  quantity  Float    // Can be 1.5 KG
+  subtotal  Float
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Expense {
+  id          String   @id @default(cuid())
+  description String
+  amount      Float
+  date        DateTime @default(now())
+  category    ExpenseCategory @default(OPERATIONAL)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+enum ExpenseCategory {
+  OPERATIONAL // Deterjen, plastik, dll
+  UTILITY     // Listrik, air
+  SALARY      // Gaji
+  OTHER
+}
