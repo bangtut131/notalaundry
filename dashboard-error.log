@@ -1,0 +1,42 @@
+PrismaClientKnownRequestError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].order.findMany()` invocation in
+D:\ACEP\NOTA LAUNDRY\.next\dev\server\chunks\[root-of-the-server]__c4845f46._.js:87:171
+
+  84 const yesterday = new Date(today);
+  85 yesterday.setDate(yesterday.getDate() - 1);
+  86 // Get today's revenue (only PAID orders)
+→ 87 const todayOrders = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].order.findMany(
+The table `main.Order` does not exist in the current database.
+PrismaClientKnownRequestError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].order.findMany()` invocation in
+D:\ACEP\NOTA LAUNDRY\.next\dev\server\chunks\[root-of-the-server]__c4845f46._.js:87:171
+
+  84 const yesterday = new Date(today);
+  85 yesterday.setDate(yesterday.getDate() - 1);
+  86 // Get today's revenue (only PAID orders)
+→ 87 const todayOrders = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].order.findMany(
+The table `main.Order` does not exist in the current database.
+    at Un.handleRequestError (D:\ACEP\NOTA LAUNDRY\node_modules\@prisma\client\runtime\library.js:121:7447)
+    at Un.handleAndLogRequestError (D:\ACEP\NOTA LAUNDRY\node_modules\@prisma\client\runtime\library.js:121:6771)
+    at Un.request (D:\ACEP\NOTA LAUNDRY\node_modules\@prisma\client\runtime\library.js:121:6478)
+    at async l (D:\ACEP\NOTA LAUNDRY\node_modules\@prisma\client\runtime\library.js:130:9644)
+    at async GET (D:\ACEP\NOTA LAUNDRY\.next\dev\server\chunks\[root-of-the-server]__c4845f46._.js:87:29)
+    at async AppRouteRouteModule.do (D:\ACEP\NOTA LAUNDRY\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js:5:37866)
+    at async AppRouteRouteModule.handle (D:\ACEP\NOTA LAUNDRY\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js:5:45156)
+    at async responseGenerator (D:\ACEP\NOTA LAUNDRY\.next\dev\server\chunks\[root-of-the-server]__bfaa6196._.js:15350:38)
+    at async AppRouteRouteModule.handleResponse (D:\ACEP\NOTA LAUNDRY\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js:1:191938)
+    at async handleResponse (D:\ACEP\NOTA LAUNDRY\.next\dev\server\chunks\[root-of-the-server]__bfaa6196._.js:15413:32)
+    at async Module.handler (D:\ACEP\NOTA LAUNDRY\.next\dev\server\chunks\[root-of-the-server]__bfaa6196._.js:15466:13)
+    at async DevServer.renderToResponseWithComponentsImpl (D:\ACEP\NOTA LAUNDRY\node_modules\next\dist\server\base-server.js:1442:9)
+    at async DevServer.renderPageComponent (D:\ACEP\NOTA LAUNDRY\node_modules\next\dist\server\base-server.js:1494:24)
+    at async DevServer.renderToResponseImpl (D:\ACEP\NOTA LAUNDRY\node_modules\next\dist\server\base-server.js:1544:32)
+    at async DevServer.pipeImpl (D:\ACEP\NOTA LAUNDRY\node_modules\next\dist\server\base-server.js:1038:25)
+    at async NextNodeServer.handleCatchallRenderRequest (D:\ACEP\NOTA LAUNDRY\node_modules\next\dist\server\next-server.js:395:17)
+    at async DevServer.handleRequestImpl (D:\ACEP\NOTA LAUNDRY\node_modules\next\dist\server\base-server.js:929:17)
+    at async D:\ACEP\NOTA LAUNDRY\node_modules\next\dist\server\dev\next-dev-server.js:387:20
+    at async Span.traceAsyncFn (D:\ACEP\NOTA LAUNDRY\node_modules\next\dist\trace\trace.js:157:20)
+    at async DevServer.handleRequest (D:\ACEP\NOTA LAUNDRY\node_modules\next\dist\server\dev\next-dev-server.js:383:24)
+    at async invokeRender (D:\ACEP\NOTA LAUNDRY\node_modules\next\dist\server\lib\router-server.js:248:21)
+    at async handleRequest (D:\ACEP\NOTA LAUNDRY\node_modules\next\dist\server\lib\router-server.js:447:24)
+    at async requestHandlerImpl (D:\ACEP\NOTA LAUNDRY\node_modules\next\dist\server\lib\router-server.js:496:13)
+    at async Server.requestListener (D:\ACEP\NOTA LAUNDRY\node_modules\next\dist\server\lib\start-server.js:226:13)

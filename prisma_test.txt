@@ -1,0 +1,74 @@
+﻿node.exe : 
+At line:1 char:1
++ & "C:\Program 
+Files\nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo 
+...
++ ~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~
+    + CategoryInfo     
+         : NotSpecifi  
+  ed: (:String) [],    
+ RemoteException
+    + FullyQualifiedEr 
+   rorId : NativeComm  
+  andError
+ 
+node:internal/modules/r
+un_main:107
+    triggerUncaughtExce
+ption(
+    ^
+Error: Transform 
+failed with 1 error:
+D:\ACEP\NOTA LAUNDRY\sr
+c\lib\prisma.ts:12:0: 
+ERROR: Unexpected 
+"export"
+    at 
+failureErrorWithLog 
+(D:\ACEP\NOTA LAUNDRY\n
+ode_modules\esbuild\lib
+\main.js:1748:15)
+    at D:\ACEP\NOTA LAU
+NDRY\node_modules\esbui
+ld\lib\main.js:1017:50
+    at responseCallback
+s.<computed> 
+(D:\ACEP\NOTA LAUNDRY\n
+ode_modules\esbuild\lib
+\main.js:884:9)
+    at 
+handleIncomingPacket 
+(D:\ACEP\NOTA LAUNDRY\n
+ode_modules\esbuild\lib
+\main.js:939:12)
+    at 
+Socket.readFromStdout 
+(D:\ACEP\NOTA LAUNDRY\n
+ode_modules\esbuild\lib
+\main.js:862:7)
+    at Socket.emit 
+(node:events:508:28)
+    at addChunk (node:i
+nternal/streams/readabl
+e:559:12)
+    at readableAddChunk
+PushByteMode (node:inte
+rnal/streams/readable:5
+10:3)
+    at Readable.push (n
+ode:internal/streams/re
+adable:390:5)
+    at 
+Pipe.onStreamRead (node
+:internal/stream_base_c
+ommons:189:23) {
+  name: 
+'TransformError'
+}
+
+Node.js v24.12.0

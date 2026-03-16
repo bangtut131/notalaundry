@@ -1,0 +1,95 @@
+﻿node.exe : 
+D:\ACEP\NOTA LAUNDRY\no
+de_modules\@prisma\clie
+nt\src\runtime\getPrism
+aClient.ts:320
+At line:1 char:1
++ & "C:\Program 
+Files\nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo 
+...
++ ~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~
+    + CategoryInfo     
+         : NotSpecifi  
+  ed: (D:\ACEP\NOTA    
+ LA...maClient.ts:3    
+20:String) [], Rem    
+oteException
+    + FullyQualifiedEr 
+   rorId : NativeComm  
+  andError
+ 
+        throw new Prism
+aClientInitializationEr
+ror(
+              ^
+
+PrismaClientInitializat
+ionError: 
+`PrismaClient` needs 
+to be constructed with 
+a non-empty, valid 
+`PrismaClientOptions`:
+
+```
+new PrismaClient({
+  ...
+})
+```
+
+or
+
+```
+constructor() {
+  super({ ... });
+}
+```
+          
+    at new t 
+(D:\ACEP\NOTA LAUNDRY\n
+ode_modules\@prisma\cli
+ent\src\runtime\getPris
+maClient.ts:320:15)
+    at 
+prismaClientSingleton 
+(D:\ACEP\NOTA LAUNDRY\s
+rc\lib\prisma.ts:4:10)
+    at <anonymous> 
+(D:\ACEP\NOTA LAUNDRY\s
+rc\lib\prisma.ts:11:43)
+    at 
+Object.<anonymous> 
+(D:\ACEP\NOTA LAUNDRY\s
+rc\lib\prisma.ts:15:70)
+    at Module._compile 
+(node:internal/modules/
+cjs/loader:1761:14)
+    at 
+Object.transformer 
+(D:\ACEP\NOTA LAUNDRY\n
+ode_modules\tsx\dist\re
+gister-D46fvsV_.cjs:3:1
+104)
+    at Module.load (nod
+e:internal/modules/cjs/
+loader:1481:32)
+    at Module._load (no
+de:internal/modules/cjs
+/loader:1300:12)
+    at TracingChannel.t
+raceSync (node:diagnost
+ics_channel:328:14)
+    at wrapModuleLoad (
+node:internal/modules/c
+js/loader:245:24) {
+  clientVersion: 
+'7.5.0',
+  errorCode: undefined,
+  retryable: undefined
+}
+
+Node.js v24.12.0

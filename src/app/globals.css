@@ -1,11 +1,8 @@
+@import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
-@tailwind base;
-
 @custom-variant dark (&:is(.dark *));
-@tailwind components;
-@tailwind utilities;
 
 @layer base {
   :root {
@@ -89,14 +86,7 @@
   }
 }
 
-/* Custom Utilities for Premium Look */
-.glass {
-  @apply bg-background/60 backdrop-blur-lg border border-border/50 shadow-sm;
-}
-
-.gradient-text {
-  @apply text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-600 dark:from-blue-300 dark:to-indigo-500;
-}
+/* Custom Utilities Removed for Tailwind 4 Compatibility */
 
 :root {
   --background: oklch(1 0 0);

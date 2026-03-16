@@ -3,22 +3,54 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
+
+// ===== MULTI-TENANT =====
+
+model Store {
+  id        String   @id @default(cuid())
+  name      String
+  address   String?
+  phone     String?
+  plan      Plan     @default(STARTER)
+  isActive  Boolean  @default(true)
+  planStart DateTime @default(now())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  users     User[]
+  customers Customer[]
+  services  Service[]
+  orders    Order[]
+  expenses  Expense[]
+}
+
+enum Plan {
+  STARTER
+  STARTUP
+  PRO
+  ENTERPRISE
+}
+
+// ===== AUTH =====
 
 model User {
   id        String   @id @default(cuid())
   email     String   @unique
+  password  String
   name      String
   role      Role     @default(KASIR)
+  storeId   String?
+  store     Store?   @relation(fields: [storeId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   orders    Order[]
 }
 
 enum Role {
+  SUPERADMIN
   ADMIN
   KASIR
   KURIR
@@ -27,12 +59,16 @@ enum Role {
 model Customer {
   id        String   @id @default(cuid())
   name      String
-  phone     String   @unique // The WhatsApp number
+  phone     String
   address   String?
   point     Int      @default(0)
+  storeId   String
+  store     Store    @relation(fields: [storeId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   orders    Order[]
+
+  @@unique([phone, storeId])
 }
 
 model Service {
@@ -42,6 +78,8 @@ model Service {
   price       Float
   unit        UnitType @default(KG)
   isExpress   Boolean  @default(false)
+  storeId     String
+  store       Store    @relation(fields: [storeId], references: [id])
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
@@ -56,11 +94,13 @@ enum UnitType {
 
 model Order {
   id            String      @id @default(cuid())
-  orderNumber   String      @unique // E.g., ORD-20260316-0001
+  orderNumber   String      @unique
   customerId    String
   customer      Customer    @relation(fields: [customerId], references: [id])
-  userId        String      // The user who created this order
+  userId        String
   user          User        @relation(fields: [userId], references: [id])
+  storeId       String
+  store         Store       @relation(fields: [storeId], references: [id])
   totalAmount   Float
   discount      Float       @default(0)
   finalAmount   Float
@@ -68,11 +108,10 @@ model Order {
   status        OrderStatus @default(QUEUE)
   notes         String?
   
-  // Timestamps for tracking
-  createdAt     DateTime    @default(now()) // Tgl Terima
-  estimatedDate DateTime?   // Estimasi Selesai
-  completedDate DateTime?   // Tgl Selesai
-  pickedUpDate  DateTime?   // Tgl Diambil
+  createdAt     DateTime    @default(now())
+  estimatedDate DateTime?
+  completedDate DateTime?
+  pickedUpDate  DateTime?
   updatedAt     DateTime    @updatedAt
 
   items OrderItem[]
@@ -85,11 +124,11 @@ enum PaymentStatus {
 }
 
 enum OrderStatus {
-  QUEUE         // Antrean
-  WASHING       // Proses Cuci
-  IRONING       // Proses Setrika
-  READY         // Selesai (Siap Diambil) -> Trigger auto billing
-  COMPLETED     // Sudah Diambil
+  QUEUE
+  WASHING
+  IRONING
+  READY
+  COMPLETED
   CANCELLED
 }
 
@@ -99,7 +138,7 @@ model OrderItem {
   order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
   serviceId String
   service   Service  @relation(fields: [serviceId], references: [id])
-  quantity  Float    // Can be 1.5 KG
+  quantity  Float
   subtotal  Float
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -111,13 +150,15 @@ model Expense {
   amount      Float
   date        DateTime @default(now())
   category    ExpenseCategory @default(OPERATIONAL)
+  storeId     String
+  store       Store    @relation(fields: [storeId], references: [id])
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
 
 enum ExpenseCategory {
-  OPERATIONAL // Deterjen, plastik, dll
-  UTILITY     // Listrik, air
-  SALARY      // Gaji
+  OPERATIONAL
+  UTILITY
+  SALARY
   OTHER
 }

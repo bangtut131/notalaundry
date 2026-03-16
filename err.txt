@@ -1,0 +1,18 @@
+D:\ACEP\NOTA LAUNDRY\node_modules\@prisma\client\src\runtime\utils\validatePrismaClientOptions.ts:229
+    throw new PrismaClientConstructorValidationError(
+          ^
+
+PrismaClientConstructorValidationError: Using engine type "client" requires either "adapter" or "accelerateUrl" to be provided to PrismaClient constructor.
+Read more at https://pris.ly/d/client-constructor
+    at validateDependentOptions (D:\ACEP\NOTA LAUNDRY\node_modules\@prisma\client\src\runtime\utils\validatePrismaClientOptions.ts:229:11)
+    at validatePrismaClientOptions (D:\ACEP\NOTA LAUNDRY\node_modules\@prisma\client\src\runtime\utils\validatePrismaClientOptions.ts:246:3)
+    at new t (D:\ACEP\NOTA LAUNDRY\node_modules\@prisma\client\src\runtime\getPrismaClient.ts:342:7)
+    at prismaClientSingleton (D:\ACEP\NOTA LAUNDRY\src\lib\prisma.ts:4:10)
+    at <anonymous> (D:\ACEP\NOTA LAUNDRY\src\lib\prisma.ts:11:43)
+    at Object.<anonymous> (D:\ACEP\NOTA LAUNDRY\src\lib\prisma.ts:15:70)
+    at Module._compile (node:internal/modules/cjs/loader:1761:14)
+    at Object.transformer (D:\ACEP\NOTA LAUNDRY\node_modules\tsx\dist\register-D46fvsV_.cjs:3:1104)
+    at Module.load (node:internal/modules/cjs/loader:1481:32)
+    at Module._load (node:internal/modules/cjs/loader:1300:12)
+
+Node.js v24.12.0

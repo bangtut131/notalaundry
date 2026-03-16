@@ -1,0 +1,65 @@
+﻿Γû▓ Next.js 16.1.6 (Turbopack)
+- Environments: .env
+
+  Creating an optimized production build ...
+Γ£ô Compiled successfully in 1888.6ms
+  Running TypeScript ...
+node.exe : Failed to 
+compile.
+At line:1 char:1
++ & "C:\Program 
+Files\nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo 
+...
++ ~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~
+    + CategoryInfo     
+         : NotSpecifi  
+  ed: (Failed to com   
+ pile.:String) [],     
+RemoteException
+    + FullyQualifiedEr 
+   rorId : NativeComm  
+  andError
+ 
+
+./test1.ts:4:5
+Type error: Object 
+literal may only 
+specify known 
+properties, and 
+'datasourceUrl' does 
+not exist in type 'Subs
+et<PrismaClientOptions,
+ PrismaClientOptions>'.
+
+[0m [90m 2 |[39m
+ [90m 3 |[39m 
+[36mconst[39m p 
+[33m=[39m 
+[36mnew[39m [33mPris
+maClient[39m({
+[31m[1m>[22m[39m[9
+0m 4 |[39m     datasou
+rceUrl[33m:[39m proce
+ss[33m.[39menv[33m.
+[39m[33mDATABASE_URL[
+39m
+ [90m   |[39m     
+[31m[1m^[22m[39m
+ [90m 5 |[39m 
+})[33m;[39m
+ [90m 6 |[39m
+ [90m 7 |[39m p[33m.
+[39mservice[33m.[39m
+findMany()[33m.[39mth
+en(console[33m.[39mlo
+g)[33m.[39m[36mcatch
+[39m(console[33m.[39
+merror)[33m;[39m[0m
+Next.js build worker 
+exited with code: 1 
+and signal: null
